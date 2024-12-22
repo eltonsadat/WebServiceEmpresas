@@ -10,19 +10,12 @@ public class Empresa implements Serializable {
 	private Long id;
 	private String nome;
 	private String endereco;
-        private String referencia;
 	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public String getReferencia() {
-		return referencia;
-	}
-	public void setReferencia(String referencia) {
-		this.referencia = referencia;
 	}
 	public String getNome() {
 		return nome;
@@ -39,6 +32,6 @@ public class Empresa implements Serializable {
 	
 	@Override
 	public String toString() {
-		return "Carro [id=" + id + ", nome=" + nome + ", endereco=" + endereco + ", referencia=" + referencia + "]";
+		return "Carro [id= " + id + ", nome=" + nome + ", endereco=" + endereco +"]";
 	}
 }

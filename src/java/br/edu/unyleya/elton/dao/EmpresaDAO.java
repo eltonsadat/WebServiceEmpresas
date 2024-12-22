@@ -113,7 +113,6 @@ public class EmpresaDAO extends BaseDAO {
 		c.setId(rs.getLong("id"));
 		c.setNome(rs.getString("nome"));
 		c.setEndereco(rs.getString("endereco"));
-                c.setReferencia(rs.getString("referencia"));
 		
 		return c;
 	}
@@ -126,22 +125,21 @@ public class EmpresaDAO extends BaseDAO {
 			if (c.getId() == null) {
 				stmt = conn
 						.prepareStatement(
-								"insert into empresa (nome,endereco,referencia) VALUES(?,?,?)",
+								"insert into empresa (nome,endereco) VALUES(?,?)",
 								Statement.RETURN_GENERATED_KEYS);
 			} else {
 				stmt = conn
-						.prepareStatement("update empresa set nome=?,endereco=?,referencia=? where id=?");
+						.prepareStatement("update empresa set nome=?,endereco=? where id=?");
 			}
 			stmt.setString(1, c.getNome());
 			stmt.setString(2, c.getEndereco());
-			stmt.setString(3, c.getReferencia());
 			if (c.getId() != null) {
 				// Update
-				stmt.setLong(4, c.getId());
+				stmt.setLong(3, c.getId());
 			}
 			int count = stmt.executeUpdate();
 			if (count == 0) {
-				throw new SQLException("Erro ao inserir o empresa");
+				throw new SQLException("Erro ao inserir a empresa");
 			}
 			// Se inseriu, ler o id auto incremento
 			if (c.getId() == null) {
